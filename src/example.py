@@ -38,6 +38,15 @@ for i in range(n_bands):
 fig.delaxes(axes[-1])
 #plt.show()
 
+# Convert 2d band array in 1-d to make them as feature vectors and Standardization  
+
+MB_matrix = np.zeros((MB_img[:,:,0].size,n_bands))
+for i in range(n_bands):
+    MB_array = MB_img[:,:,i].flatten()  # covert 2d to 1d array 
+    MB_arrayStd = (MB_array - MB_array.mean())/MB_array.std()  # Standardize each variable 
+    MB_matrix[:,i] = MB_arrayStd
+MB_matrix.shape;
+
 im = Image.open('../images/Original_and_Transformed_axes.PNG')
 im.thumbnail((500,490), Image.ANTIALIAS)
 #im.show()
