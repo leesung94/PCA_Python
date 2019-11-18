@@ -1,4 +1,5 @@
 from IPython.display import Image, display
+from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as grid
 import pandas as pd
@@ -23,7 +24,7 @@ print('\n\nDispalying colour image of the scene')
 plt.figure(figsize=(img_shape[0]/100,img_shape[1]/100))
 plt.imshow(img, vmin=0, vmax=255)
 plt.axis('off');
-
+#plt.show()
 
 fig,axes = plt.subplots(2,4,figsize=(50,23),sharex='all', sharey='all')   #img_shape[0]/50,img_shape[1]/50
 fig.subplots_adjust(wspace=0.1, hspace=0.15)
@@ -35,4 +36,17 @@ for i in range(n_bands):
     axes[i].set_title('band '+str(i+1),fontsize=25)
     axes[i].axis('off')
 fig.delaxes(axes[-1])
-plt.show()
+#plt.show()
+
+im = Image.open('../images/Original_and_Transformed_axes.PNG')
+im.thumbnail((500,490), Image.ANTIALIAS)
+#im.show()
+
+# Covariance
+np.set_printoptions(precision=3)
+cov = np.cov(MB_matrix.transpose())
+
+# Eigen Values
+EigVal,EigVec = np.linalg.eig(cov)
+
+print("Eigen values:\n\n", EigVal,"\n")
