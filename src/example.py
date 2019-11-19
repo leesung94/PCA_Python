@@ -1,4 +1,4 @@
-from IPython.display import Image, display
+#from IPython.display import Image, display
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as grid
