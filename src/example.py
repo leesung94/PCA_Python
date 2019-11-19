@@ -26,14 +26,14 @@ plt.imshow(img, vmin=0, vmax=255)
 plt.axis('off');
 #plt.show()
 
-fig,axes = plt.subplots(2,4,figsize=(50,23),sharex='all', sharey='all')   #img_shape[0]/50,img_shape[1]/50
+fig,axes = plt.subplots(2,4,figsize=(5,5),sharex='all', sharey='all')   #img_shape[0]/50,img_shape[1]/50
 fig.subplots_adjust(wspace=0.1, hspace=0.15)
-fig.suptitle('Intensities at Different Bandwidth in the visible and Infra-red spectrum', fontsize=20)
+fig.suptitle('Intensities at Different Bandwidth in the visible and Infra-red spectrum', fontsize=10)
 
 axes = axes.ravel()
 for i in range(n_bands):
     axes[i].imshow(MB_img[:,:,i],cmap='gray', vmin=0, vmax=255)
-    axes[i].set_title('band '+str(i+1),fontsize=25)
+    axes[i].set_title('band '+str(i+1),fontsize=10)
     axes[i].axis('off')
 fig.delaxes(axes[-1])
 #plt.show()
@@ -47,8 +47,8 @@ for i in range(n_bands):
     MB_matrix[:,i] = MB_arrayStd
 MB_matrix.shape;
 
-im = Image.open('../images/Original_and_Transformed_axes.PNG')
-im.thumbnail((500,490), Image.ANTIALIAS)
+#im = Image.open('../images/Original_and_Transformed_axes.PNG')
+#im.thumbnail((500,490), Image.ANTIALIAS)
 #im.show()
 
 # Covariance
@@ -75,7 +75,7 @@ b = sns.pairplot(pd.DataFrame(PC, columns = ['PC 1','PC 2','PC 3','PC 4','PC 5',
 b.fig.suptitle("Pair plot of PCs")
 
 #Information Retained by Principal Components
-plt.figure(figsize=(8,6))
+plt.figure(figsize=(5,5))
 plt.bar([1,2,3,4,5,6,7],EigVal/sum(EigVal)*100,align='center',width=0.4,tick_label = ['PC1','PC2','PC3','PC4','PC5','PC6','PC7'])
 plt.ylabel('Variance (%)')
 plt.title('Information retention');
@@ -92,22 +92,22 @@ PC_2d_Norm = np.zeros((img_shape[0],img_shape[1],n_bands))
 for i in range(n_bands):
     PC_2d_Norm[:,:,i] = cv2.normalize(PC_2d[:,:,i],  np.zeros(img_shape),0,255 ,cv2.NORM_MINMAX)
 
-    fig,axes = plt.subplots(2,4,figsize=(50,23),sharex='all', sharey='all')   #img_shape[0]/50,img_shape[1]/50
+    fig,axes = plt.subplots(2,4,figsize=(5,5),sharex='all', sharey='all')   #img_shape[0]/50,img_shape[1]/50
 fig.subplots_adjust(wspace=0.1, hspace=0.15)
-fig.suptitle('Intensities of Principal Components ', fontsize=30)
+fig.suptitle('Intensities of Principal Components ', fontsize=10)
 
 
 axes = axes.ravel()
 for i in range(n_bands):
     axes[i].imshow(PC_2d_Norm[:,:,i],cmap='gray', vmin=0, vmax=255)
-    axes[i].set_title('PC '+str(i+1),fontsize=25)
+    axes[i].set_title('PC '+str(i+1),fontsize=10)
     axes[i].axis('off')
 fig.delaxes(axes[-1])
 
 # Comparsion of RGB and Image produced using first three bands
-fig,axes = plt.subplots(1,2,figsize=(50,23),sharex='all', sharey='all')   #img_shape[0]/50,img_shape[1]/50
+fig,axes = plt.subplots(1,2,figsize=(5,5),sharex='all', sharey='all')   #img_shape[0]/50,img_shape[1]/50
 fig.subplots_adjust(wspace=0.1, hspace=0.15)
-fig.suptitle('Comparision of RGB image and principal components composite image', fontsize=20)
+fig.suptitle('Comparision of RGB image and principal components composite image', fontsize=10)
 #axes[0].figure(figsize=(img_shape[0]/150,img_shape[1]/150))
 #axes[0].imshow(img, vmin=0, vmax=255)
 axes[0].imshow(MB_img[:,:,0:3].astype(int))
